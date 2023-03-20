@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meetus/ui/pages/main_page.dart';
 import 'package:meetus/ui/pages/sign_in_page.dart';
 import 'package:meetus/ui/pages/splash_screen_page.dart';
 
@@ -14,8 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => SignInPage(),
-        'sign-in': (context) => SignInPage()
+        '/': (context) => MainPage(),
+        '/sign-in': (context) => SignInPage(),
+        '/main': (context) => MainPage(),
       },
     );
   }

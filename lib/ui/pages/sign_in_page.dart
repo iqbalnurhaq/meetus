@@ -44,7 +44,7 @@ class _SignInPageState extends State<SignInPage> {
           Padding(
             padding: const EdgeInsets.only(top: 16, bottom: 24),
             child: Text(
-              'Login to your account to continue your course.',
+              'Login to your right account to continue and find the meeting you want.',
               style: grayTextStyle.copyWith(
                 fontSize: 16,
               ),
