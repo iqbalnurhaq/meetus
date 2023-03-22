@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../shared/theme.dart';
+import '../../../shared/theme.dart';
 
 class BottomNavigationItem extends StatelessWidget {
   final String icon;

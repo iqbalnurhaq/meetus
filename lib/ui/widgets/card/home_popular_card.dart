@@ -10,7 +10,7 @@ class HomePopularCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 230,
-      height: 240,
+      height: 243,
       margin: EdgeInsets.only(right: 24),
       decoration: BoxDecoration(
         color: kWhiteColor,
@@ -34,7 +34,7 @@ class HomePopularCard extends StatelessWidget {
                 ),
                 fit: BoxFit.cover,
               ),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(12),
             ),
           ),
           Padding(
@@ -76,9 +76,20 @@ class HomePopularCard extends StatelessWidget {
                 SizedBox(
                   height: 4,
                 ),
-                Text(
-                  'FREE',
-                  style: greenTextStyle,
+                Row(
+                  children: [
+                    Text(
+                      'FREE',
+                      style: greenTextStyle.copyWith(fontSize: 16),
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      '- Seminar',
+                      style: grayTextStyle,
+                    )
+                  ],
                 )
               ],
             ),

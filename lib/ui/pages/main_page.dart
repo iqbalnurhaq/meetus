@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meetus/shared/theme.dart';
-import 'package:meetus/ui/widgets/bottom_navigation_item.dart';
+import 'package:meetus/ui/widgets/navigation/bottom_navigation_item.dart';
 
 import 'home_page.dart';
 

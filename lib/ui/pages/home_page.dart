@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:meetus/ui/widgets/card/home_category_card.dart';
 import '../../shared/theme.dart';
 import '../widgets/card/home_popular_card.dart';
 
@@ -12,6 +13,92 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget popularMeet() {
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Popular Meet',
+                  style: blackTextStyle.copyWith(fontSize: 18),
+                ),
+                Text(
+                  'See All',
+                  style: greenTextStyle,
+                )
+              ],
+            ),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(top: 16, bottom: 16, left: 20),
+            child: Row(
+              children: [
+                HomePopularCard(),
+                HomePopularCard(),
+                HomePopularCard(),
+                HomePopularCard(),
+              ],
+            ),
+          )
+        ],
+      );
+    }
+
+    Widget categoriesMeet() {
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Categories',
+                  style: blackTextStyle.copyWith(fontSize: 18),
+                ),
+              ],
+            ),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(top: 16, bottom: 16, left: 20, right: 8),
+            child: Row(
+              children: [
+                HomeCategoryCard(
+                  icon: 'assets/images/img_bussiness_category.png',
+                  name: 'Bussiness',
+                ),
+                HomeCategoryCard(
+                  icon: 'assets/images/img_education_category.png',
+                  name: 'Education',
+                ),
+                HomeCategoryCard(
+                  icon: 'assets/images/img_religion_category.png',
+                  name: 'Religion',
+                ),
+                HomeCategoryCard(
+                  icon: 'assets/images/img_coding_category.png',
+                  name: 'Technology',
+                ),
+                HomeCategoryCard(
+                  icon: 'assets/images/img_health_category.png',
+                  name: 'Health',
+                ),
+                HomeCategoryCard(
+                  icon: 'assets/images/img_lifestyle_category.png',
+                  name: 'Lifestyle',
+                ),
+              ],
+            ),
+          )
+        ],
+      );
+    }
+
     return Stack(
       children: [
         Container(
@@ -120,36 +207,11 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 decoration: BoxDecoration(color: kWhiteColor),
-                padding: EdgeInsets.only(top: 32),
+                padding: EdgeInsets.only(top: 24),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Popular Meet',
-                            style: blackTextStyle.copyWith(fontSize: 18),
-                          ),
-                          Text(
-                            'See All',
-                            style: greenTextStyle,
-                          )
-                        ],
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.only(top: 16, bottom: 16, left: 20),
-                      child: Row(
-                        children: [
-                          HomePopularCard(),
-                          HomePopularCard(),
-                          HomePopularCard(),
-                        ],
-                      ),
-                    )
+                    popularMeet(),
+                    categoriesMeet(),
                   ],
                 ),
               )
