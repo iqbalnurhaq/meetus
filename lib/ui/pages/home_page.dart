@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meetus/ui/widgets/card/home_category_card.dart';
+import 'package:meetus/ui/widgets/card/home_topic_card.dart';
 import '../../shared/theme.dart';
 import '../widgets/card/home_popular_card.dart';
 
 class HomePage extends StatelessWidget {
   final double topPadding;
+  final double bottomPadding;
   const HomePage({
     super.key,
     this.topPadding = 0.0,
+    this.bottomPadding = 0.0,
   });
 
   @override
@@ -92,6 +95,111 @@ class HomePage extends StatelessWidget {
                   icon: 'assets/images/img_lifestyle_category.png',
                   name: 'Lifestyle',
                 ),
+              ],
+            ),
+          )
+        ],
+      );
+    }
+
+    Widget seminarTopicMeet() {
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Seminar',
+                  style: blackTextStyle.copyWith(fontSize: 18),
+                ),
+                Text(
+                  'See All',
+                  style: greenTextStyle,
+                )
+              ],
+            ),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(top: 16, bottom: 16, left: 20),
+            child: Row(
+              children: [
+                HomeTopicCard(),
+                HomeTopicCard(),
+                HomeTopicCard(),
+                HomeTopicCard(),
+              ],
+            ),
+          )
+        ],
+      );
+    }
+
+    Widget workshopTopicMeet() {
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Workshop',
+                  style: blackTextStyle.copyWith(fontSize: 18),
+                ),
+                Text(
+                  'See All',
+                  style: greenTextStyle,
+                )
+              ],
+            ),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(top: 16, bottom: 16, left: 20),
+            child: Row(
+              children: [
+                HomeTopicCard(),
+                HomeTopicCard(),
+                HomeTopicCard(),
+                HomeTopicCard(),
+              ],
+            ),
+          )
+        ],
+      );
+    }
+
+    Widget discussionTopicMeet() {
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Discussion',
+                  style: blackTextStyle.copyWith(fontSize: 18),
+                ),
+                Text(
+                  'See All',
+                  style: greenTextStyle,
+                )
+              ],
+            ),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(top: 16, bottom: 16, left: 20),
+            child: Row(
+              children: [
+                HomeTopicCard(),
+                HomeTopicCard(),
+                HomeTopicCard(),
+                HomeTopicCard(),
               ],
             ),
           )
@@ -212,6 +320,12 @@ class HomePage extends StatelessWidget {
                   children: [
                     popularMeet(),
                     categoriesMeet(),
+                    seminarTopicMeet(),
+                    workshopTopicMeet(),
+                    discussionTopicMeet(),
+                    SizedBox(
+                      height: bottomPadding + 70,
+                    ),
                   ],
                 ),
               )

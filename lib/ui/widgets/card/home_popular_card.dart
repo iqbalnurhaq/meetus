@@ -65,11 +65,13 @@ class HomePopularCard extends StatelessWidget {
                     SizedBox(
                       width: 4,
                     ),
-                    Text(
-                      'Jakarta Selatan',
-                      style: grayTextStyle,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
+                    Expanded(
+                      child: Text(
+                        'Jakarta Selatan',
+                        style: grayTextStyle,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
                     ),
                   ],
                 ),

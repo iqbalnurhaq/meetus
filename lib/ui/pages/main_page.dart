@@ -16,6 +16,7 @@ class MainPage extends StatelessWidget {
     Widget buildContent(double topPadding) {
       return HomePage(
         topPadding: topPadding,
+        bottomPadding: bottomPadding,
       );
     }
 
