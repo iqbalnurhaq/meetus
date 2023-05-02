@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meetus/provider/auth_notifier.dart';
 import 'package:meetus/shared/theme.dart';
+import 'package:meetus/ui/widgets/input/input_text_field.dart';
 import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
@@ -71,60 +72,21 @@ class _SignInPageState extends State<SignInPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextField(
-            controller: emailController,
-            style: blackTextStyle.copyWith(fontSize: 16),
+          InputTextField(
+            title: 'Email',
+            textController: emailController,
             focusNode: emailFocus,
-            decoration: InputDecoration(
-              hintText: "Email",
-              hintStyle: grayTextStyle.copyWith(fontSize: 16),
-              border: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: kGrayColor,
-                ),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Color(0xff1C82AD),
-                ),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              prefixIcon: IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  'assets/icon/ic_email.svg',
-                  color: kGrayColor,
-                ),
-              ),
-            ),
+            icon: 'assets/icon/ic_email.svg',
           ),
           SizedBox(
             height: 16,
           ),
-          TextField(
-            controller: passwordController,
-            style: blackTextStyle.copyWith(fontSize: 16),
+          InputTextField(
+            title: 'Password',
+            textController: passwordController,
             focusNode: passwordFocus,
-            obscureText: true,
-            decoration: InputDecoration(
-              hintText: "Password",
-              hintStyle: grayTextStyle.copyWith(fontSize: 16),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Color(0xff1C82AD),
-                ),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              prefixIcon: IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset('assets/icon/ic_password.svg',
-                    color: Color(0xff1C82AD)),
-              ),
-            ),
+            icon: 'assets/icon/ic_password.svg',
+            obscure: true,
           ),
         ],
       ),
@@ -143,12 +105,22 @@ class _SignInPageState extends State<SignInPage> {
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        onPressed: () {
+        onPressed: () async {
           var body = {
             "email": emailController.text,
             "password": passwordController.text
           };
-          Provider.of<AuthNotifier>(context, listen: false).authLogin(body);
+
+          var provider = Provider.of<AuthNotifier>(context, listen: false);
+
+          await provider.authLogin(body);
+          if (provider.logged) {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              '/main',
+              (route) => false,
+            );
+          }
         },
         child: Text(
           'Sign In',

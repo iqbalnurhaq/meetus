@@ -30,6 +30,10 @@ class AuthNotifier extends ChangeNotifier {
   String _registerMessage = '';
   String get registerMessage => _registerMessage;
 
+  //Logged
+  bool _logged = false;
+  bool get logged => _logged;
+
   Future<void> authLogin(Map<String, dynamic> body) async {
     _loginState = RequestState.Loading;
     notifyListeners();
@@ -42,6 +46,7 @@ class AuthNotifier extends ChangeNotifier {
     }, (userData) {
       _loginState = RequestState.Loaded;
       _loginUser = userData;
+      _logged = true;
       notifyListeners();
     });
   }

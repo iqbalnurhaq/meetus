@@ -10,7 +10,7 @@ abstract class AuthRemoteDataSource {
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
-  static const BASE_URL = "http://172.20.10.7:3000/api";
+  static const BASE_URL = "http://192.168.100.235:3000/api";
 
   final http.Client client;
 
@@ -20,6 +20,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<AuthResponseModel> login(Map<String, dynamic> body) async {
     final response =
         await client.post(Uri.parse('$BASE_URL/auth/login'), body: body);
+
     if (response.statusCode == 200) {
       return AuthResponseModel.fromJson(json.decode(response.body));
     } else {

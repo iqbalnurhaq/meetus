@@ -27,6 +27,12 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final result = await authRemoteDataSource.login(body);
       if (result.status == "success") {
+        await authLocalDataSource
+            .insertUser(UserTable.fromModel(result.data.user));
+        final localUser = await authLocalDataSource.getUser();
+
+        await sharedPref.saveString("token", result.data.token);
+
         return Right(result.data.user.toEntity());
       } else {
         return Left(ConnectionFailure(''));
@@ -52,7 +58,6 @@ class AuthRepositoryImpl implements AuthRepository {
         final localUser = await authLocalDataSource.getUser();
 
         await sharedPref.saveString("token", result.data.token);
-
         return Right(localUser!.toEntity());
       } else {
         return Left(ConnectionFailure(''));
