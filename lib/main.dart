@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meetus/provider/auth_notifier.dart';
+import 'package:meetus/provider/bottom_navigation_notifier.dart';
 import 'package:meetus/ui/pages/main_page.dart';
 import 'package:meetus/ui/pages/sign_in_page.dart';
 import 'package:meetus/ui/pages/sign_up_page.dart';
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => di.locator<AuthNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => BottomNavigationNotifier(),
         )
       ],
       child: MaterialApp(

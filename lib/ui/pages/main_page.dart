@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:meetus/provider/bottom_navigation_notifier.dart';
 import 'package:meetus/shared/theme.dart';
 import 'package:meetus/ui/widgets/navigation/bottom_navigation_item.dart';
+import 'package:provider/provider.dart';
 
 import 'home_page.dart';
 
@@ -14,13 +16,31 @@ class MainPage extends StatelessWidget {
     final topPadding = MediaQuery.of(context).padding.top;
 
     Widget buildContent(double topPadding) {
-      return HomePage(
-        topPadding: topPadding,
-        bottomPadding: bottomPadding,
+      return Consumer<BottomNavigationNotifier>(
+        builder: (context, data, child) {
+          switch (data.selectNav) {
+            case 1:
+              return HomePage(
+                topPadding: topPadding,
+                bottomPadding: bottomPadding,
+              );
+            case 2:
+              return Scaffold(
+                body: Text('Transaction'),
+              );
+            default:
+              return HomePage(
+                topPadding: topPadding,
+                bottomPadding: bottomPadding,
+              );
+          }
+        },
       );
     }
 
     Widget customButtonNavigation() {
+      BottomNavigationNotifier provider =
+          Provider.of<BottomNavigationNotifier>(context, listen: false);
       return Align(
         alignment: Alignment.bottomCenter,
         child: Container(
@@ -41,11 +61,29 @@ class MainPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 BottomNavigationItem(
-                    icon: 'assets/icon/ic_explore.svg', title: 'Explore'),
+                  icon: 'assets/icon/ic_explore.svg',
+                  title: 'Explore',
+                  keySlc: 1,
+                  onTap: () {
+                    provider.select(1);
+                  },
+                ),
                 BottomNavigationItem(
-                    icon: 'assets/icon/ic_document.svg', title: 'List'),
+                  icon: 'assets/icon/ic_document.svg',
+                  title: 'List',
+                  keySlc: 2,
+                  onTap: () {
+                    provider.select(2);
+                  },
+                ),
                 BottomNavigationItem(
-                    icon: 'assets/icon/ic_profile.svg', title: 'Profile'),
+                  icon: 'assets/icon/ic_profile.svg',
+                  title: 'Profile',
+                  keySlc: 3,
+                  onTap: () {
+                    provider.select(3);
+                  },
+                ),
               ],
             ),
           ),
