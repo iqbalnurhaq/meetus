@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meetus/provider/bottom_navigation_notifier.dart';
 import 'package:meetus/shared/theme.dart';
+import 'package:meetus/ui/pages/profile_page.dart';
 import 'package:meetus/ui/widgets/navigation/bottom_navigation_item.dart';
 import 'package:provider/provider.dart';
 
@@ -28,6 +29,8 @@ class MainPage extends StatelessWidget {
               return Scaffold(
                 body: Text('Transaction'),
               );
+            case 3:
+              return ProfilePage();
             default:
               return HomePage(
                 topPadding: topPadding,
